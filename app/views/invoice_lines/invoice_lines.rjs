@@ -1,0 +1,1 @@
+page.replace_html :invoice_lines_form, :partial => "invoice_lines", :object => @invoice

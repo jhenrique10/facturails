@@ -1,0 +1,17 @@
+# == Schema Information
+# Schema version: 4
+#
+# Table name: invoices
+#
+#  id          :integer(11)   not null, primary key
+#  customer_id :integer(11)   not null
+#  date        :date          
+#  fiscal_year :integer(11)   
+#  number      :integer(11)   
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+two:
+  id: 2

@@ -1,0 +1,38 @@
+<% form_for :invoice_search, :url => search_invoices_path do |form| %>
+	<div class="<%= cycle('even', 'odd') %>">
+		<label for="init_date">Fecha búsqueda:</label>
+		<%= calendar_date_select_tag "init_date" %>
+		-
+		<%= calendar_date_select_tag "end_date" %>
+		<%= submit_tag "Buscar", :class => "button" %>
+	</div>
+	
+<% end %>
+
+<table class="list">
+	<thead>
+		<tr>
+			<th class="number">Número</th>
+			<th class="date">Fecha</th>
+			<th class="customer">Cliente</th>
+			<th class="total">Total</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @invoices.each do |invoice| %>
+		<tr class="<%= cycle('even', 'odd')%>">
+			<td class="center"><%= link_to invoice.invoice_number, edit_invoice_path(invoice) %></td>
+			<td class="center"><%= invoice.date.to_formatted_s(:date) %></td>
+			<td><%= invoice.customer.name %></td>
+			<td class="right"><%= format_price(invoice.total) %></td>
+		</tr>
+		<% end %>
+	</tbody>
+    
+    <tfoot>
+        <tr class="pagination">
+            <td colspan="4"><%= pagination @invoices %></td>
+        </tr>
+    </tfoot>
+</table>

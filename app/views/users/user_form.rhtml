@@ -1,0 +1,50 @@
+<h3 class="flash"><%= flash[:notice] %></h3>
+
+<% form_for :user, :url => user_path(@user), :html => {:method => :put} do |form| %>
+<fieldset>
+    <legend>Cambiar contraseña</legend>
+        <div>
+            <span class="label">Login:</span><%= current_user.login %>
+        </div>
+        
+		<div class="<%= cycle('even', 'odd') %>">
+			<label for="user_name">Nombre:</label>
+			<%= form.text_field :name, :class => "textfield" %>
+            <%= error_for :user, :name %>
+		</div>
+		
+		<div class="<%= cycle('even', 'odd') %>">
+			<label for="user_nif">NIF:</label>
+			<%= form.text_field :nif, :class => "textfield" %>
+		</div>
+		
+		<div class="<%= cycle('even', 'odd') %>">
+			<label for="user_address">Dirección:</label>
+			<%= form.text_area :address, :class => "textfield" %>
+		</div>	
+		
+		<div class="<%= cycle('even', 'odd') %>">
+			<label for="user_email">E-mail:</label>
+			<%= form.text_field :email, :class => "textfield" %>
+		</div>		
+		
+    
+    
+    <div>
+        <label for="user_password">Contraseña:</label>
+        <%= form.password_field :password, :class => "textfield" %>
+        <%= error_for :user, :password %>
+    </div>
+    
+    <div>
+        <label for="user_password_confirmation">Confirmar contraseña:</label>
+        <%= form.password_field :password_confirmation, :class => "textfield" %>
+				<%= error_for :user, :password_confirmation %>
+    </div>
+    
+    <div>
+        <%= submit_tag "Guardar", :class => "button" %>
+    </div>
+    
+</fieldset>
+<% end %>

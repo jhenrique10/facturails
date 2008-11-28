@@ -1,0 +1,18 @@
+<h3 class="flash"><%= flash[:notice] %></h3>
+
+<table class="list">
+	<thead>
+		<tr>
+		    <th>Nombre</th>
+            <th class="invoices"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @customers.each do |customer| %>
+		<tr class="<%= cycle('even', 'odd') %>">
+			<td><%= link_to customer.name, edit_customer_path(customer) %></td>
+			<td class="center"><%= link_to "Facturas", customer_invoices_path(customer) if customer.invoices.length > 0 %></td>	
+		</tr>
+		<% end %>
+	</tbody>
+</table>

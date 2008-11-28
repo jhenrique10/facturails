@@ -1,0 +1,20 @@
+<h3 class="flash"><%= flash[:notice] %></h3>
+
+<% form_for :session do |f| %>
+    <fieldset>
+        <legend>Login</legend>
+        <div>
+            <%= f.label :login, "Login:" %>
+            <%= f.text_field :login, :class => "textfield" %>
+        </div>
+        
+        <div>
+            <%= f.label :password, "Contraseña" %>
+            <%= f.password_field :password, :class => "textfield" %>
+        </div>
+        
+        <div>
+            <%= f.submit "Entrar", :class => "button" %>
+        </div>
+    </fieldset>
+<% end %>    

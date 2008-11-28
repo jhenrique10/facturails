@@ -1,0 +1,27 @@
+== FactuRails
+
+FactuRails es una sencilla aplicación para la creación de facturas. 
+
+== Instalación
+
+Descargar la última versión del programa:
+svn checkout http://svn.dagi3d.net/rails/facturails/trunk facturails
+
+Configurar la base de datos en el fichero config/database.yml y ejecutar 'rake db:migrate'
+
+Configurar las siguientes variables dentro del fichero config/environment.rb:
+	TMP_DIR: directorio donde se generarán los ficheros temporales
+	
+	JAVA_OPTIONS[:bin]: ejecutable con el intérprete de java
+	
+	JAVA_OPTIONS[:cp_separator]: separador del classpath del intérprete de java (en windows
+		se utiliza ';' y en linux ':')
+
+Iniciar el servidor web con el comando 'script/server'
+
+El nombre de usuario y contraseña por defecto son 'admin' y '1234' respectivamente.
+La plantilla utilizada para generar los documentos pdf se encuentra en 'app/views/pdf_invoice.rhtml'
+
+
+
+

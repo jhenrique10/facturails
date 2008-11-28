@@ -1,0 +1,32 @@
+# MySQL (default setup).  Versions 4.1 and 5.0 are recommended.
+#
+# Install the MySQL driver:
+#   gem install mysql
+# On MacOS X:
+#   gem install mysql -- --include=/usr/local/lib
+# On Windows:
+#   gem install mysql
+#       Choose the win32 build.
+#       Install MySQL and put its /bin directory on your path.
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+development:
+  adapter: mysql
+  database: facturails_dev
+  username: facturails
+  password:
+  host: 127.0.0.1
+  adapter: sqlite3
+  database: db/facturails.db
+
+test:
+  adapter: sqlite3
+  database: db/facturails_test.db
+
+production:
+  adapter: mysql
+  database: facturails_production
+  username: facturails
+  password: 
+  host: 127.0.0.1
