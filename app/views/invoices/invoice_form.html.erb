@@ -1,10 +1,10 @@
-<% form_for :invoice, @invoice_url do |form| %>
+<% form_for @invoice do |f| %>
 	<fieldset>
 		<legend>Editar factura</legend>
 		
 		<h3>Factura nº <%= @invoice.invoice_number %></h3>
     
-		<% if @invoice.id %>
+		<% unless @invoice.new_record? %>
 		<div class="<%= cycle('even', 'odd') %> pdf right">
 			<%= link_to "PDF", invoice_path(@invoice) + ".pdf" %>
 		</div>
@@ -12,24 +12,24 @@
 		
 		<div class="<%= cycle('even', 'odd') %>">
 			<label for="invoice_date">Fecha:</label>
-			<%= date_select :invoice, :date, :order => [:day, :month, :year] %>	
+			<%= f.date_select :date, :order => [:day, :month, :year] %>	
 		</div>
 		
     <div  class="<%= cycle('even', 'odd') %>">
       <label for="invoice_iva">IVA:</label>
-      <%= text_field :invoice, :iva, :class => "textfield percent" %> %
+      <%= f.text_field :iva, :class => "textfield percent" %> %
       <%= error_for :invoice, :iva %>
     </div>
         
     <div  class="<%= cycle('even', 'odd') %>">
       <label for="invoice_irpf">IRPF:</label>
-      <%= text_field :invoice, :irpf, :class => "textfield percent" %> %
+      <%= f.text_field :irpf, :class => "textfield percent" %> %
       <%= error_for :invoice, :irpf %>
     </div>
 
 		<div class="<%= cycle('even', 'odd') %>">
 			<label>Cliente:</label>
-			<%= select :invoice, :customer_id, 
+			<%= f.select :customer_id, 
 					@customers.map {|customer| [customer.name, customer.id]},
 					{}, :class => "customer"
 			%>
@@ -39,20 +39,14 @@
 				 :with => "id" %>
 		</div>
 		
-        <!--
-		<div id="customer_info">
-			<%= render :file => "./customers/customer_info" %>
-		</div>
-        -->
 		
 		<div>
-			<%= hidden_field :invoice, :id %>
-			<%= submit_tag "Guardar", :class => "button" %>
+			<%= f.submit "Guardar", :class => "button" %>
 		</div>
 	</fieldset>
 <% end %>
 
-<% if @invoice.id %>
+<% unless @invoice.new_record? %>
 
 <div id="invoice_lines_form">
 	<%= render :partial => "/invoice_lines/invoice_lines" %>

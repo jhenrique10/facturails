@@ -2,7 +2,6 @@ class InvoicesController < ApplicationController
   
   layout "invoice"
   
-  #before_filter :get_customer, :set_section
   before_filter :login_required, :set_section, :except => :public_invoices
   
   # index
@@ -11,8 +10,6 @@ class InvoicesController < ApplicationController
     @subsection = "invoices"
     conditions = params[:customer_id].nil? ? nil : ["customer_id = ?", params[:customer_id]] 
     
-    #@invoices = Invoice.find(:all, :conditions => conditions, :order => "fiscal_year DESC, number DESC")
-
     @invoices = Invoice.paginate(
       :conditions => conditions,
       :order => "fiscal_year DESC, number DESC",
@@ -27,14 +24,12 @@ class InvoicesController < ApplicationController
   #
   def new
     @subsection = "invoices_form"
-    @invoice_url = {:url => invoices_path}
     @customers = Customer.find(:all)
     
     if @customers.length == 0
       flash[:notice] = "No hay ningún cliente dado de alta"
-      render :template => "../error"
+      render :template => "error"
     else
-      @customer = @customers.first
       @invoice = Invoice.new
       render :action => "invoice_form"
     end
@@ -57,12 +52,6 @@ class InvoicesController < ApplicationController
           :filename => "factura-#{@invoice.invoice_number}.pdf",
           :type => "application/pdf"
       end
-
-      # html
-      #
-      #format.html do
-      #  render :text => html
-      #end
     end
   end
   
@@ -71,7 +60,6 @@ class InvoicesController < ApplicationController
   def create
     
     @subsection = "invoices_form"
-    @invoice_url = {:url => invoices_path}
     
     @invoice = Invoice.new(params[:invoice])
     @invoice.customer = @customer = Customer.find(params[:invoice][:customer_id])
@@ -88,9 +76,6 @@ class InvoicesController < ApplicationController
   # edit
   #
   def edit
-    @invoice_url = {:url => invoice_path(params[:id]), :html => {:method => :put}}
-    @invoice_line_url = {:url => invoice_lines_path(params[:id])}
-    
     @invoice = Invoice.find(params[:id])
     @customer = @invoice.customer
     @invoice_line = InvoiceLine.new
@@ -106,18 +91,14 @@ class InvoicesController < ApplicationController
   # update
   #
   def update
-    @invoice = Invoice.find(params[:invoice][:id])
-    @invoice.update_attributes(params[:invoice])
+    @invoice = Invoice.find(params[:id])
     
-    @invoice.customer = @customer = Customer.find(params[:invoice][:customer_id])
-    
-    if @invoice.save
+    if @invoice.update_attributes(params[:invoice])
       redirect_to edit_invoice_path(@invoice)
     else
       @customers = Customer.find(:all)
       @invoice_line = InvoiceLine.new
-      @invoice_url = {:url => invoice_path(@invoice), :html => {:method => :put}}
-      @invoice_line_url = {:url => invoice_lines_path(@invoice) }
+
       render :action => "invoice_form"
     end
     
