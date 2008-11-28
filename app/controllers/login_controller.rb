@@ -14,7 +14,7 @@ class LoginController < ApplicationController
     if request.get?
       render :action => "login_form"
     else
-      self.current_user = User.authenticate(params[:login], params[:password])
+      self.current_user = User.authenticate(params[:session][:login], params[:session][:password])
       if logged_in?
         if params[:remember_me] == "1"
           self.current_user.remember_me

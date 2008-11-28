@@ -1,17 +1,17 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table "users", :force => true do |t|
-      t.column :name,                      :string
-      t.column :address,                   :text
-      t.column :nif,                       :string
-      t.column :login,                     :string
-      t.column :email,                     :string
-      t.column :crypted_password,          :string, :limit => 40
-      t.column :salt,                      :string, :limit => 40
-      t.column :created_at,                :datetime
-      t.column :updated_at,                :datetime
-      t.column :remember_token,            :string
-      t.column :remember_token_expires_at, :datetime
+      t.string :name
+      t.string :address
+      t.string :nif
+      t.string :login
+      t.string :email
+      t.string :crypted_password, :limit => 40
+      t.string :salt, :limit => 40
+      t.datetime :created_at
+      t.datetime :updated_at
+      t.string :remember_token
+      t.datetime :remember_token_expires_at
     end
     
     User.create(:login => "admin", :name => "Admin", :password => "1234", :password_confirmation => "1234").save

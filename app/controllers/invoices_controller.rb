@@ -32,7 +32,7 @@ class InvoicesController < ApplicationController
     
     if @customers.length == 0
       flash[:notice] = "No hay ningún cliente dado de alta"
-      render :action => "../error"
+      render :template => "../error"
     else
       @customer = @customers.first
       @invoice = Invoice.new
