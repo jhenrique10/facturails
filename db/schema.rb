@@ -38,16 +38,13 @@ ActiveRecord::Schema.define(:version => 5) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "string"
     t.string   "address"
-    t.string   "text"
     t.string   "nif"
     t.string   "login"
     t.string   "email"
     t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40
     t.datetime "created_at"
-    t.datetime "datetime"
     t.datetime "updated_at"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"

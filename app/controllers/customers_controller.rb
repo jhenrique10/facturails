@@ -17,7 +17,6 @@ class CustomersController < ApplicationController
   #
   def new
     @subsection = "customers_form"    
-    @customer_url = {:url => customers_path}
     @customer = Customer.new
     
     flash[:notice] = ""
@@ -32,10 +31,9 @@ class CustomersController < ApplicationController
     
     if @customer.save
       flash[:notice] = "Cliente guardado correctamente"
-      redirect_to customers_url
+      redirect_to customers_path
     else
       flash[:notice] = "Se produjo un error al guardar el cliente."
-      @form_action = "create"
       render :action => "customer_form"
     end
   end
@@ -45,7 +43,6 @@ class CustomersController < ApplicationController
   #
   def edit
     @customer = Customer.find(params[:id])
-    @customer_url = {:url => customer_path(params[:id]), :html => {:method => :put}}
     
     render :action => "customer_form"
   end
@@ -55,11 +52,10 @@ class CustomersController < ApplicationController
   def update
     @subsection = "customers_form"    
     @customer = Customer.find(params[:customer][:id])
-    @customer_url = {:url => customer_path(params[:customer][:id]), :html => {:method => :put}}
     
     if @customer.update_attributes(params[:customer])
       flash[:notice] = "Cliente guardado correctamente"
-      redirect_to customers_url
+      redirect_to customers_path
     else
       flash[:notice] = "Se produjo un error al guardar el cliente."
       render :action => "customer_form"
@@ -74,7 +70,7 @@ class CustomersController < ApplicationController
     
     flash[:notice] = "Cliente borrado."
     
-    redirect_to customers_url
+    redirect_to customers_path
     
     rescue ActiveRecord::ReferentialIntegrityProtectionError
     flash[:notice] = "No se pudo borrar el cliente porque tiene facturas asociadas."
