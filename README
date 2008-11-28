@@ -5,7 +5,7 @@ FactuRails es una sencilla aplicación para la creación de facturas.
 == Instalación
 
 Descargar la última versión del programa:
-svn checkout http://svn.dagi3d.net/rails/facturails/trunk facturails
+git clone git://github.com/dagi3d/facturails.git
 
 Configurar la base de datos en el fichero config/database.yml y ejecutar 'rake db:migrate'
 
