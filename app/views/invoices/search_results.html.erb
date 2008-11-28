@@ -1,0 +1,34 @@
+<table class="list">
+	<thead>
+		<tr>
+			<th class="number">Número</th>
+			<th class="date">Fecha</th>
+			<th class="base">Base</th>
+			<th class="iva">IVA</th>
+			<th class="irpf">IRPF</th>
+			<th class="total">Total</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @invoices.each do |invoice| %>
+		<tr class="<%= cycle('even', 'odd')%>">
+			<td class="center"><%= link_to invoice.invoice_number, edit_invoice_path(invoice) %></td>
+			<td class="center"><%= invoice.date.to_formatted_s(:date) %></td>
+			<td class="right"><%= format_price(invoice.base) %></td>
+			<td class="right"><%= format_price(invoice.total_iva) %></td>
+			<td class="right"><%= format_price(invoice.total_irpf) %></td>
+			<td class="right"><%= format_price(invoice.total) %></td>
+		</tr>
+	</tbody>
+	<% end %>
+	<tfoot>
+		<tr class="<%= cycle('even', 'odd')%>">
+			<td colspan="2" class="transparent"></td>
+			<td class="subtotal right"><%= format_price(@total[:base]) %></td>
+			<td class="subtotal right"><%= format_price(@total[:total_iva]) %></td>
+			<td class="subtotal right"><%= format_price(@total[:total_irpf]) %></td>
+			<td class="total right"><%= format_price(@total[:total]) %></td>
+		</tr>
+	</tfoot>
+</table>
