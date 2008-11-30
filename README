@@ -20,7 +20,7 @@ Configurar las siguientes variables dentro del fichero config/environment.rb:
 Iniciar el servidor web con el comando 'script/server'
 
 El nombre de usuario y contraseña por defecto son 'admin' y '1234' respectivamente.
-La plantilla utilizada para generar los documentos pdf se encuentra en 'app/views/pdf_invoice.rhtml'
+La plantilla utilizada para generar los documentos pdf se encuentra en 'app/views/pdf_invoice.html.erb'
 
 Funciona en Rails 2.2
 
