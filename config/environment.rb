@@ -21,10 +21,12 @@ end
 
 require 'accumulator'
 
-Date::MONTHNAMES = %w(
-  Enero Febrero Marzo Abril Mayo Junio Julio Agosto
-  Septiembre Octubre Noviembre Diciembre
-)
+#Date::MONTHNAMES = %w(
+#  Enero Febrero Marzo Abril Mayo Junio Julio Agosto
+#  Septiembre Octubre Noviembre Diciembre
+#)
+
+I18n.default_locale = 'es-ES'
 
 date_formats = {
   :date => '%d/%m/%Y'
