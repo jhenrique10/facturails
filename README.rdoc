@@ -10,12 +10,11 @@ git clone git://github.com/dagi3d/facturails.git
 Configurar la base de datos en el fichero config/database.yml y ejecutar 'rake db:migrate'
 
 Configurar las siguientes variables dentro del fichero config/environment.rb:
-	TMP_DIR: directorio donde se generarán los ficheros temporales
+*TMP_DIR: directorio donde se generarán los ficheros temporales
 	
-	JAVA_OPTIONS[:bin]: ejecutable con el intérprete de java
+*JAVA_OPTIONS[:bin]: ejecutable con el intérprete de java
 	
-	JAVA_OPTIONS[:cp_separator]: separador del classpath del intérprete de java (en windows
-		se utiliza ';' y en linux ':')
+*JAVA_OPTIONS[:cp_separator]: separador del classpath del intérprete de java (en windowsse utiliza ';' y en linux ':')
 
 Iniciar el servidor web con el comando 'script/server'
 
