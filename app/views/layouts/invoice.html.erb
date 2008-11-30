@@ -16,9 +16,9 @@
 		<div id="main">
     		<ul id="menu">
     		    <%= menu_option("Facturas", invoices_path, "invoices", @section) %>
-                <%= menu_option("Clientes", customers_path, "customers", @section) %>
-                <%= menu_option("Opciones", edit_user_path(current_user), "preferences", @section) %>
-                <%= menu_option("Salir", url_for(:action => "logout", :controller => "login"), "logout", @section) %>
+            <%= menu_option("Clientes", customers_path, "customers", @section) %>
+            <%= menu_option("Opciones", edit_user_path(current_user), "preferences", @section) %>
+            <%= menu_option("Salir", url_for(:action => "logout", :controller => "login"), "logout", @section) %>
     		</ul>
     		
     		<div id="content">
@@ -29,7 +29,9 @@
     		</div>
             
             <div id="footer">
-                <a href="http://dagi3d.net">&copy; 2007 dagi3d</a>
+                Distribuido bajo licencia MIT
+                -
+                <a href="http://dagi3d.net">&copy; dagi3d</a>
             </div>
         </div>
 	</body>
