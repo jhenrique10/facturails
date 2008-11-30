@@ -1,4 +1,4 @@
-<% remote_form_for :invoice_line, @invoice_line_url do |form| %>
+<% remote_form_for [@invoice, @invoice_line] do |form| %>
 	<fieldset>
 		<legend>Líneas de factura: </legend>
 		
@@ -21,7 +21,7 @@
 					<td class="right"><%= invoice_line.quantity %></td>
 					<td>
 						<%= link_to_remote invoice_line.description, 
-								:url => edit_invoice_line_path(@invoice, invoice_line),
+								:url => edit_invoice_invoice_line_path(@invoice, invoice_line),
 								:method => :get
 						%>
 					</td>
@@ -29,7 +29,7 @@
 					<td class="right"><%= format_price(invoice_line.total) %></td>
 					<td class="center">
 						<%= link_to_remote "Borrar", 
-									:url => invoice_line_path(@invoice, invoice_line), 
+									:url => invoice_invoice_line_path(@invoice, invoice_line), 
 									:method => :delete,
 									:confirm => "¿Seguro?"
 					  %>

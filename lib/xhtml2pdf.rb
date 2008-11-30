@@ -10,6 +10,5 @@ def xhtml2pdf(input_file, output_file)
   end
   
   command = "#{JAVA_OPTIONS[:bin]} -cp #{class_path} Xhtml2Pdf \"#{input_file}\" \"#{output_file}\""
-  puts command
   system(command)
 end

@@ -40,7 +40,7 @@ class InvoicesController < ApplicationController
   def show
     
     @invoice = Invoice.find(params[:id])
-    html = render_to_string :template => "pdf_invoice", :layout => false
+    html = render_to_string :template => "./pdf_invoice.html.erb", :layout => false
     
     respond_to do |format|
       
@@ -67,7 +67,7 @@ class InvoicesController < ApplicationController
     
     
     if @invoice.save
-      redirect_to :action => "edit", :id => @invoice.id
+      redirect_to edit_invoice_path(@invoice)
     else
       render :action => "invoice_form"
     end
@@ -76,7 +76,7 @@ class InvoicesController < ApplicationController
   # edit
   #
   def edit
-    @invoice = Invoice.find(params[:id])
+    @invoice = Invoice.find(params[:id], :include => :customer)
     @customer = @invoice.customer
     @invoice_line = InvoiceLine.new
     
@@ -111,7 +111,7 @@ class InvoicesController < ApplicationController
   def destroy
     Invoice.delete(params[:id])
 
-    redirect_to invoices_url
+    redirect_to invoices_path
   end
   
   
@@ -169,4 +169,5 @@ class InvoicesController < ApplicationController
   def set_section
     @section = "invoices"
   end
+  
 end

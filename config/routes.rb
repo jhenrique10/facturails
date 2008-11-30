@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'invoices/page/:page', :controller => 'invoices', :action => 'index'
   
   map.resources :invoices, :collection => { :search => :post } do |invoices|
-    invoices.resources :invoice_lines
+    invoices.resources :invoice_lines, :as => 'lines'
   end
 
   

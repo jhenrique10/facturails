@@ -39,7 +39,7 @@ Mime::Type.register "application/pdf", :pdf
 TMP_DIR = File.expand_path(File.join(RAILS_ROOT, "tmp"))
 
 JAVA_OPTIONS = {
-  :bin => "/usr/local/java/bin/java", 
+  :bin => "java", 
   :cp_separator => ":"                                       
 }
 

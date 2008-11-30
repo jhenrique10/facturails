@@ -12,8 +12,7 @@ class InvoiceLinesController < ApplicationController
   # edit
   #
   def edit
-    update_invoice_line_url
-    
+        
     @invoice_line = InvoiceLine.find(params[:id], :include => "invoice")
     @invoice = @invoice_line.invoice
     
@@ -26,7 +25,6 @@ class InvoiceLinesController < ApplicationController
   # create
   #
   def create
-    create_invoice_line_url
     
     @invoice = Invoice.find(params[:invoice_id], :include => :customer)
     @invoice_line = InvoiceLine.new(params[:invoice_line])
@@ -47,7 +45,6 @@ class InvoiceLinesController < ApplicationController
   # update
   #
   def update
-    create_invoice_line_url
     
     @invoice_line = InvoiceLine.new
     invoice_line = InvoiceLine.find(params[:id])
@@ -66,7 +63,6 @@ class InvoiceLinesController < ApplicationController
   # destroy
   #
   def destroy
-    create_invoice_line_url
     
     invoice_line = InvoiceLine.find(params[:id])
     @invoice = invoice_line.invoice
@@ -79,17 +75,5 @@ class InvoiceLinesController < ApplicationController
     end
   end
   
-  private
-  # create_invoice_line_url
-  def create_invoice_line_url
-    @invoice_line_url = {:url => invoice_lines_path(params[:invoice_id])}
-  end
   
-  # update_invoice_line_url
-  def update_invoice_line_url
-    @invoice_line_url = {
-      :url => invoice_line_path(params[:invoice_id], params[:id]),
-      :html => { :method => :put }
-    }
-  end
 end
