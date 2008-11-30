@@ -26,9 +26,9 @@ module ApplicationHelper
   
   # public_invoices_path
   #
-  def public_invoices_path(customer)
-    "#{customer.id}/#{customer.private_key}/invoices"
-  end
+  #def public_invoices_path(customer)
+  #  "#{customer.id}/#{customer.private_key}/invoices"
+  #end
   
   # menu_option
   #

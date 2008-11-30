@@ -16,8 +16,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   
   map.with_options :controller => 'invoices', :action => 'public_invoices' do |map|
-    map.public_invoices 'customers/:customer_id/:private_key/invoices'
-    map.public_invoices 'customers/:customer_id/:private_key/invoices.:format'
+    map.public_invoices '/customers/:customer_id/:private_key/invoices.:format'
+    map.public_invoices '/customers/:customer_id/:private_key/invoices'
   end
   
  

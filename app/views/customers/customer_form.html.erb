@@ -34,7 +34,7 @@
 		<% if @customer.id %>
 		<div class="<%= cycle('even', 'odd') %>">
 			<span class="label">Dirección pública:</span>
-			<%= link_to public_invoices_path(@customer), public_invoices_path(@customer)%>
+			<%= link_to public_invoices_path(@customer.id, @customer.private_key), public_invoices_path(@customer.id, @customer.private_key)%>
 		</div>
 		<% end %>
 		
