@@ -21,13 +21,9 @@ end
 
 require 'accumulator'
 
-#Date::MONTHNAMES = %w(
-#  Enero Febrero Marzo Abril Mayo Junio Julio Agosto
-#  Septiembre Octubre Noviembre Diciembre
-#)
-
 I18n.default_locale = 'es-ES'
 
+# dates
 date_formats = {
   :date => '%d/%m/%Y'
 }
@@ -35,6 +31,7 @@ date_formats = {
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(date_formats)
 ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(date_formats)
 
+# pdf mime type
 Mime::Type.register "application/pdf", :pdf
 
 # config vars
